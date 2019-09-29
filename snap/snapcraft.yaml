@@ -1,0 +1,29 @@
+name: interface-hooks-service-example
+base: core18
+version: "0.1"
+summary: Example of using interface hooks with snap services
+description:
+  Interface hooks allow starting a service _only_ after all relevant interfaces
+  have been connected, no matter if that happens via store auto-connection,
+  gadget auto-connection, or manual user connection.
+
+architectures:
+  - build-on: amd64
+    run-on: armhf
+
+grade: stable
+confinement: strict
+
+apps:
+  svc1:
+    command: svc1.sh
+    stop-command: stop-svc1.sh
+    daemon: simple
+    plugs:
+      - hardware-observe
+      - gpio
+
+parts:
+  my-part:
+    plugin: dump
+    source: .

@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+# call the main interface hook
+"$SNAP/hooks-disconnect-update.sh" gpio
